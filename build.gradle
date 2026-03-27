@@ -11,20 +11,19 @@ allprojects {
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.dubligram.genesis.installer'
+    namespace 'com.dubligram.genesis' // Просто имя для системы
     compileSdk 33
-    
-    // ВОТ ОНО! ГОВОРИМ ГРАДЛУ, ЧТО ВСЁ В КОРНЕ 🧼✨
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['.']
-            res.srcDirs = ['res']
+            java.srcDirs = ['.'] // ИСКАТЬ ПРЯМО ТУТ 📂🧱
+            res.srcDirs = []     // Игнорим пустые папки
         }
     }
 
     defaultConfig {
-        applicationId "com.dubligram.genesis.installer"
+        applicationId "com.dubligram.genesis"
         minSdk 21
         targetSdk 33
         versionCode 1
