@@ -2,32 +2,32 @@ name: Build Dubligram APK 🚀
 
 on:
   push:
-    branches: [ main ] # ЗАПУСКАТЬ, когда Дима сохраняет код в ветку main
-  workflow_dispatch:   # Позволяет запустить сборку ВРУЧНУЮ кнопкой
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Всегда используй свежий v4 🧬
+      - name: Checkout Code 📂
+        uses: actions/checkout@v4 # САМАЯ СВЕЖАЯ v4 ✨
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4 # Обновили на v4 для стерильности ✨
+        uses: actions/setup-java@v4 # ТОЖЕ ОБНОВИЛИ ДО v4 🧬
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # ВОТ СЮДА СТАВИМ МОЩНУЮ ВОСЬМЕРКУ СРАЗУ ПОСЛЕ JAVA 🏗️🧪
-      - name: Setup Gradle 8.0 🦾
-        uses: gradle/gradle-build-action@v2
+      - name: Setup Gradle 8.5 🦾
+        uses: gradle/actions/setup-gradle@v3 # ЭТО НОВЫЙ СТАНДАРТ (замена старым v2/v3)
         with:
-          gradle-version: 8.0
+          gradle-version: "8.5" # ЖЕСТКО В КАВЫЧКАХ 🏗️🧪
 
       - name: Build APK 🏗️
         run: gradle assembleDebug
 
       - name: Upload APK 📦
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4 # ФИНАЛЬНАЯ v4 ДЛЯ ТВОЕГО APK 📦
         with:
           name: Dubligram-Genesis-Installer
           path: "**/*.apk"
