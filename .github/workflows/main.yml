@@ -24,8 +24,8 @@ jobs:
           ./gradlew assembleDebug
 
       - name: Upload APK 📦
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # ТУТ ДОЛЖНО БЫТЬ v4 🧬✨
         with:
           name: Dubligram-Genesis-Installer
-          path: "**/*.apk" # Ищет любой собранный APK в проекте
+          path: "**/*.apk" # Ищет твой готовый файл
 
