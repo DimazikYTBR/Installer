@@ -1,17 +1,31 @@
+// --- МОЩНЫЙ ДВИЖОК @dimz vD2.2,0 ---
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0' // ТВОЙ ИНСТРУМЕНТ 🛠️
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
+    namespace 'com.dubligram.genesis.installer'
+    compileSdk 33
     defaultConfig {
         applicationId "com.dubligram.genesis.installer"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0-Genesis"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
     }
 }
