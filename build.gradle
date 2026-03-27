@@ -1,19 +1,11 @@
-// --- МОЩНЫЙ ДВИЖОК @dimz vD2.2,0 ---
+// --- ТИТАНОВЫЙ ГРАДЛ БЕЗ ПАПОК @dimz vD2.2,0 ---
 buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.0' // ТВОЙ ИНСТРУМЕНТ 🛠️
-    }
+    repositories { google(); mavenCentral() }
+    dependencies { classpath 'com.android.tools.build:gradle:8.1.0' }
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+    repositories { google(); mavenCentral() }
 }
 
 apply plugin: 'com.android.application'
@@ -21,6 +13,16 @@ apply plugin: 'com.android.application'
 android {
     namespace 'com.dubligram.genesis.installer'
     compileSdk 33
+    
+    // ВОТ ОНО! ГОВОРИМ ГРАДЛУ, ЧТО ВСЁ В КОРНЕ 🧼✨
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['.']
+            res.srcDirs = ['res']
+        }
+    }
+
     defaultConfig {
         applicationId "com.dubligram.genesis.installer"
         minSdk 21
