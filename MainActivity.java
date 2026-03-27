@@ -1,4 +1,6 @@
 // --- Dubligram Genesis Installer (vD2.2,0) ---
+package com.dubligram.genesis; // ПРОВЕРЬ ЭТО! СЮДААААА! ✨
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
