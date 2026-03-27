@@ -1,4 +1,4 @@
-// --- Dubligram Genesis Installer Engine ---
+// --- Dubligram Genesis Engine vD2.2,0 ---
 buildscript {
     repositories { google(); mavenCentral() }
     dependencies { classpath 'com.android.tools.build:gradle:8.1.0' }
@@ -11,22 +11,22 @@ allprojects {
 apply plugin: 'com.android.application'
 
 android {
-    // ВОТ ОНО! ТВОЙ ЦИФРОВОЙ ПАСПОРТ 🧬✨
     namespace 'com.dubligram.genesis' 
-    compileSdk 33
+    compileSdk 34 // ПОДНЯЛИ ДО 34 СЮДААААА! 🏎️💨
 
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['.'] // Искать Java прямо в корне папки INSTALLER
+            java.srcDirs = ['.']
         }
     }
 
     defaultConfig {
         applicationId "com.dubligram.genesis"
         minSdk 21
-        targetSdk 33
+        targetSdk 34 // ТОЖЕ 34 ДЛЯ ТИТАНОВОЙ СТАБИЛЬНОСТИ 🦾
         versionCode 1
         versionName "1.0-Genesis"
     }
 }
+
