@@ -1,4 +1,4 @@
-// --- ТИТАНОВЫЙ ГРАДЛ БЕЗ ПАПОК @dimz vD2.2,0 ---
+// --- Dubligram Genesis Installer Engine ---
 buildscript {
     repositories { google(); mavenCentral() }
     dependencies { classpath 'com.android.tools.build:gradle:8.1.0' }
@@ -11,19 +11,22 @@ allprojects {
 apply plugin: 'com.android.application'
 
 android {
+    // ВОТ ОНО! ТВОЙ ЦИФРОВОЙ ПАСПОРТ 🧬✨
+    namespace 'com.dubligram.genesis' 
     compileSdk 33
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['.']
+            java.srcDirs = ['.'] // Искать Java прямо в корне папки INSTALLER
         }
     }
+
     defaultConfig {
         applicationId "com.dubligram.genesis"
         minSdk 21
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0-Genesis"
     }
 }
-
