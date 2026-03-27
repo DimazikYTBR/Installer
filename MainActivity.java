@@ -1,5 +1,4 @@
 // --- Dubligram Genesis Installer (vD2.2,0) ---
-
 package com.dubligram.genesis.installer;
 
 import android.app.Activity;
@@ -27,7 +26,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         p = getSharedPreferences("Dubli", 0);
 
-        // 1. ПРОВЕРКА: Если уже "вшито" — сразу на ФИНАЛ 🍎
         if (p.getBoolean("injected", false)) {
             showThanks();
         } else {
@@ -35,7 +33,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    // --- ЭТАП 1: СИСТЕМНАЯ ПЛАШКА (ВЫБОР) ---
     private void showWelcomeAlert() {
         new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK)
             .setTitle("Dubligram Genesis 🧬")
@@ -46,42 +43,37 @@ public class MainActivity extends Activity {
             .show();
     }
 
-    // --- ЭТАП 2: ЗАГРУЗЧИК С ТВОИМИ КНОПКАМИ (0% -> 100%) ---
     private void startInfectionUI() {
         LinearLayout root = new LinearLayout(this);
-        root.setOrientation(1); root.setGravity(17);
-        root.setBackgroundColor(0xFF121212); // Элитный графит 🌑
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setGravity(Gravity.CENTER);
+        root.setBackgroundColor(0xFF121212);
 
         GradientDrawable cardBg = new GradientDrawable();
-        cardBg.setColor(0xFF1E1E1E); cardBg.setCornerRadius(60); // 20dp 🧼
+        cardBg.setColor(0xFF1E1E1E);
+        cardBg.setCornerRadius(60);
         
         LinearLayout card = new LinearLayout(this);
-        card.setOrientation(1); card.setGravity(17);
-        card.setPadding(80, 80, 80, 80); card.setBackground(cardBg);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setGravity(Gravity.CENTER);
+        card.setPadding(80, 80, 80, 80);
+        card.setBackground(cardBg);
 
         st = new TextView(this);
         st.setText("Swift iOS 26 Core Detected...");
-        st.setTextColor(-1); st.setTextSize(17);
+        st.setTextColor(Color.WHITE);
+        st.setTextSize(17);
         st.setPadding(0, 0, 0, 40);
 
         pb = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         pb.setMax(100);
         pb.setLayoutParams(new LinearLayout.LayoutParams(700, 25));
 
-        Button btnInfo = new Button(this);
-        btnInfo.setText("PROCESS INFO"); btnInfo.setAllCaps(false);
-        btnInfo.setTextColor(0xFF8129FF);
-        GradientDrawable bd = new GradientDrawable();
-        bd.setColor(0x1A8129FF); bd.setCornerRadius(40);
-        btnInfo.setBackground(bd);
-        
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(450, 110);
-        lp.topMargin = 60; btnInfo.setLayoutParams(lp);
+        card.addView(st);
+        card.addView(pb);
+        root.addView(card);
+        setContentView(root);
 
-        card.addView(st); card.addView(pb); card.addView(btnInfo);
-        root.addView(card); setContentView(root);
-
-        // ПОТОК ПРОГРУЗКИ (0.2s вайб 🏎️💨)
         new Thread(() -> {
             for (int i = 0; i <= 100; i++) {
                 try { Thread.sleep(45); } catch (Exception e) {}
@@ -91,39 +83,44 @@ public class MainActivity extends Activity {
                     st.setText("Injecting Swift iOS 26: " + prg + "%");
                     if (prg == 100) {
                         p.edit().putBoolean("injected", true).apply();
-                        triggerRestart(); // ПЕРЕЗАГРУЗКА 🔄💀
+                        triggerRestart();
                     }
                 });
             }
         }).start();
     }
 
-    // --- ЭТАП 3: ФИНАЛЬНЫЙ РЕСПЕКТ (ПОСЛЕ РЕСТАРТА) ---
     private void showThanks() {
         LinearLayout root = new LinearLayout(this);
-        root.setOrientation(1); root.setGravity(17);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setGravity(Gravity.CENTER);
         root.setBackgroundColor(0xFF121212);
 
         TextView msg = new TextView(this);
         msg.setText("Thanks for installing our software! 🍎\n\nDubligram Genesis is now active.");
-        msg.setTextColor(-1); msg.setGravity(17); msg.setTextSize(20);
+        msg.setTextColor(Color.WHITE);
+        msg.setGravity(Gravity.CENTER);
+        msg.setTextSize(20);
         msg.setPadding(60, 0, 60, 100);
 
         Button btn = new Button(this);
         btn.setText("CONTINUE (СЮДААААА!) 🔵");
-        btn.setAllCaps(false); btn.setTextColor(-1);
+        btn.setAllCaps(false);
         GradientDrawable b = new GradientDrawable();
-        b.setColor(0xFF8129FF); b.setCornerRadius(60);
+        b.setColor(0xFF8129FF);
+        b.setCornerRadius(60);
         btn.setBackground(b);
+        btn.setTextColor(Color.WHITE);
         btn.setLayoutParams(new LinearLayout.LayoutParams(850, 160));
 
         btn.setOnClickListener(v -> finish());
-        root.addView(msg); root.addView(btn);
+        root.addView(msg);
+        root.addView(btn);
         setContentView(root);
     }
 
     private void triggerRestart() {
-        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+        Intent i = getPackageManager().getLaunchIntentForPackage(getPackageName());
         if (i != null) {
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(i);
