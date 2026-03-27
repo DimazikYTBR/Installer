@@ -17,15 +17,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Gradle
+      - name: Build APK 🧬
         run: |
-          # Если у тебя нет папки 'app', используй просто ./gradlew
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          # Мы не ищем gradlew, мы просто варим билд напрямую через установленный софт
+          sudo apt-get update && sudo apt-get install -y gradle
+          gradle assembleDebug
 
       - name: Upload APK 📦
-        uses: actions/upload-artifact@v4 # ТУТ ДОЛЖНО БЫТЬ v4 🧬✨
+        uses: actions/upload-artifact@v4
         with:
           name: Dubligram-Genesis-Installer
-          path: "**/*.apk" # Ищет твой готовый файл
+          path: "**/*.apk"
 
