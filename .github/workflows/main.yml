@@ -22,9 +22,9 @@ jobs:
         uses: gradle/actions/setup-gradle@v3 # ЭТО НОВЫЙ СТАНДАРТ (замена старым v2/v3)
         with:
           gradle-version: "8.5" # ЖЕСТКО В КАВЫЧКАХ 🏗️🧪
-
-      - name: Build APK 🏗️
-        run: gradle assembleDebug
+          
+      - name: Build APK with Stacktrace 🏗️
+        run: gradle assembleDebug --stacktrace --info # ТЕПЕРЬ МЫ ВИДИМ ВСЁ! 🧪🧬
 
       - name: Upload APK 📦
         uses: actions/upload-artifact@v4 # ФИНАЛЬНАЯ v4 ДЛЯ ТВОЕГО APK 📦
